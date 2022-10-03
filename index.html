@@ -453,13 +453,13 @@
           <h3 class="contact-title padd-15">SEND ME AN EMAIL</h3>
           <h4 class="contact-sub-title padd-15">I'M VERY RESPOSIVE TO MESSAGES</h4>
           <!-- ====== Contact Form ====== -->
-          <form method="post" onsubmit="sendEmail(); reset(); return false">
+          <form method="post">
             <div class="row">
               <div class="contact-form padd-15">
                 <div class="row">
                   <div class="form-item col-6 padd-15">
                     <div class="form-group">
-                      <input type="text" class="form-control"  id="name" placeholder="Name :" required>
+                      <input type="text" class="form-control" id="name" placeholder="Name :" required>
                     </div>
                   </div>
                   <div class="form-item col-6 padd-15">
@@ -483,13 +483,13 @@
                 <div class="row">
                   <div class="form-item col-12 padd-15">
                     <div class="form-group">
-                      <textarea name="" class="form-control" id="messsage" placeholder="Message :" required></textarea>
+                      <textarea name="" class="form-control" id="message" placeholder="Message :" required></textarea>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-item col-12 padd-15">
-                    <button type="submit" class="btn">Send Message</button>
+                    <button type="submit" id="btn" class="btn">Send Message</button>
                   </div>
                 </div>
               </div>
@@ -499,23 +499,28 @@
     </div>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script>
-      function sendEmail(){
+      var btn = document.getElementById('btn');
+      btn.addEventListener('click', function (e) {
+        e.preventDefault()
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var phone = document.getElementById('phone').value;
+        var subject = document.getElementById('subject').value;
+        var message = document.getElementById('message').value;
+        var body = 'name: ' + name + '<br/>  + email: + ' + email + '<br/> + phone +' + phone + '<br/> subject :' + subject + '<br/> message :' + message;
         Email.send({
           Host: "smtp.gmail.com",
-          Username: "shavezkhann03@gmail.com",
-          Password: "Sk@7220004314",
-          To: 'shavezkhan0308@gmail.com',
-          From: document.getElementById("email").value,
-          Subject: "Portfolio Enquiry",
-          Body: "Name: " + document.getElementById("name").value
-           + "<br> Email: " + document.getElementById("email").value 
-           + "<br> Phone NO.:" + document.getElementById("phone").value
-           + "<br> Subject :" + document.getElementById("subject").value 
-           + "<br> Message: " + document.getElementById("message").value 
+          Username: "shavezkhann02@gmail.com",
+          Password: "hbknrdfwideqiubz",
+          To: 'shavezkhann02@gmail.com',
+          From: email,
+          Subject: subject,
+          Body: body
         }).then(
-          message => alert("Message Sent Successfully")
+          message => alert(message)
         );
-      }
+
+      })
     </script>
     </section>
     <!-- ===== Contact Section End ===== -->
